@@ -1,0 +1,76 @@
+#N canvas 996 64 924 991 12;
+#X obj 43 481 soundfiler;
+#X floatatom 43 505 10 0 0 3 length_of_sample_in_samples - -, f 10
+;
+#X text 229 235 sends a message to soundfiler to read a file and resize
+the array to match the sample length;
+#X obj 43 192 openpanel;
+#X obj 44 551 s \$0-file_duration;
+#X text 52 24 all of this loads the sample;
+#X obj 829 701 *~ 0.25;
+#X obj 830 643 *~ 535899, f 25;
+#X obj 830 147 r \$0-file_duration;
+#X floatatom 830 171 10 0 0 0 - - -, f 10;
+#X obj 1002 594 r \$0-file_duration;
+#X floatatom 1002 618 5 0 0 0 - - -, f 5;
+#X obj 1068 338 loadbang;
+#X obj 1068 373 samplerate~;
+#X obj 1160 341 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X text 828 88 sample playback - plays once;
+#X obj 830 522 line~;
+#X text 877 514 using the line obj instead of phasor~ to progress through
+sample once;
+#X obj 830 415 expr 1000 * $f1 / $f2;
+#X text 993 415 duration / sample_rate in seconds (ms * 1000);
+#X msg 830 464 0 \, 1 \$1;
+#X obj 830 224 f;
+#X obj 764 173 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X text 726 170 play;
+#X text 1072 290 comment;
+#X obj 830 356 / 1;
+#X obj 829 734 outlet~;
+#X obj 254 146 array define \$0-sample_1;
+#X obj 43 290 list append \$0-sample_1;
+#X text 218 290 adds array name to any read messages coming in;
+#X obj 43 378 route list;
+#X text 125 378 removes the word "list" from outgoing message to soundfiler
+;
+#X obj 829 677 tabread4~ \$0-sample_1;
+#X msg 43 242 read -resize \$1;
+#X obj 902 255 inlet;
+#X obj 764 121 inlet;
+#X text 900 219 playback rate input as number | 1 is og speed \, 0.5
+is half speed \, etc.;
+#X obj 40 160 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 160 161 inlet;
+#X obj 160 190 symbol;
+#X connect 0 0 1 0;
+#X connect 1 0 4 0;
+#X connect 3 0 33 0;
+#X connect 6 0 26 0;
+#X connect 7 0 32 0;
+#X connect 8 0 9 0;
+#X connect 9 0 21 0;
+#X connect 10 0 11 0;
+#X connect 11 0 7 1;
+#X connect 12 0 13 0;
+#X connect 13 0 18 1;
+#X connect 14 0 13 0;
+#X connect 16 0 7 0;
+#X connect 18 0 20 0;
+#X connect 20 0 16 0;
+#X connect 21 0 25 0;
+#X connect 22 0 21 0;
+#X connect 25 0 18 0;
+#X connect 28 0 30 0;
+#X connect 30 0 0 0;
+#X connect 32 0 6 0;
+#X connect 33 0 28 0;
+#X connect 34 0 25 1;
+#X connect 35 0 22 0;
+#X connect 37 0 3 0;
+#X connect 38 0 39 0;
+#X connect 39 0 33 0;

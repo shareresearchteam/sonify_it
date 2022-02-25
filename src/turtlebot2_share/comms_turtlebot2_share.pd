@@ -1,0 +1,15 @@
+#N canvas 2106 169 960 984 10;
+#X obj 20 20 netreceive 9001;
+#X obj 322 201 print;
+#X obj 20 60 route linear_velocity angular_velocity distance status
+;
+#X obj 20 200 controller_turtlebot2_share;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X connect 2 0 3 0;
+#X connect 2 1 1 0;
+#X connect 2 1 3 1;
+#X connect 2 2 1 0;
+#X connect 2 2 3 2;
+#X connect 2 3 1 0;
+#X connect 2 3 3 3;

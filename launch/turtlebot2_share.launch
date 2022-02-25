@@ -1,0 +1,9 @@
+<launch>
+  <!-- Pd persistent node -->
+  <node pkg="sonify_it" name="main" type="pd_turtlebot2_share.py" cwd="node" output="screen" />
+
+  <!-- ROS-to-Pd nodes -->
+  <node pkg="sonify_it" name="send_speed" type="send_turtlebot2_speed.py" />
+  <node pkg="sonify_it" name="send_distance" type="send_turtlebot2_distance.py" />
+  <node pkg="sonify_it" name="send_status" type="send_turtlebot2_status.py" />
+</launch>
