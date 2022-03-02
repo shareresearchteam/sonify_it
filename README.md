@@ -18,27 +18,26 @@ To use the package as-is, you will need:
 
 Parts 2 and 3 can be simulated. 
 
-You will need to install Pure Data (`sudo apt install puredata`) and the following TurtleBot 2 related packages:
+You will need to install Pure Data (`sudo apt install puredata`) and the following TurtleBot 2 related packages, which you can install via the commands below:
+
 ```
-mkdir -p catkin_ws/src
-cd ~/catkin_ws/src
+cd ~/catkin_ws/src # Or your ROS workspace name
 
-sudo apt install ros-noetic-ecl-* ros-noetic-navigation libusb-dev libftdi-dev
-
+# Manually add packages that have not been added to apt for Noetic
 git clone https://github.com/turtlebot/turtlebot.git
 git clone https://github.com/turtlebot/turtlebot_simulator.git
 git clone https://github.com/turtlebot/turtlebot_apps.git
 git clone https://github.com/turtlebot/turtlebot_msgs.git
-
 git clone https://github.com/yujinrobot/kobuki.git
-git clone https://github.com/kobuki-base/kobuki_core.git
-git clone https://github.com/yujinrobot/kobuki_msgs.git
 git clone https://github.com/yujinrobot/yujin_ocs.git
 git clone https://github.com/yujinrobot/yocs_msgs.git
 
-rm -rf ~/catkin_ws/src/yujin_ocs/yocs_ar*
+rm -rf yujin_ocs/yocs_ar* # Remove deprecated packages that won't build
 
-cd ~/catkin_ws
+# Install dependencies and build
+cd ..
+rosdep update
+rosdep install --from-paths src --ignore-src -r -y
 catkin_make
 ```
 
