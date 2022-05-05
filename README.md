@@ -77,3 +77,26 @@ You may want to teleoperate the robot, which you can do with:
 roslaunch turtlebot_teleop keyboard_teleop.launch
 ```
 
+## Creating Your Own
+
+In its current state, each implementation of SonifyIt will more like implementing a template than extending a package. We hope to implement several features to this repository that will make the process better, including:
+
+- Pd subpatches and externals, which will provide templates for common sonification methods.
+- ROS-to-Pd nodes for common message types and desired data features, such as the presence of a human face. 
+- ROS services that help control the activity of SonifyIt. 
+- Instructions on how to use SonifyIt with a headless robot for both the prototyping (e.g. externals that allow remote access to ROS) and deployment phases (e.g. reliable subprocess calls for starting Pd headlessly with desired audio settings). 
+
+For the time being, this is how you can set up your own SonifyIt implementation for a generic robot with a desktop environment, such as through TeamViewer, VNC, or other desktop remote access options.
+
+1. Identify actions, states, or other situations you would like the robot to sonify (e.g. a person is detected, activating sounds like acknowledgement or warning). 
+2. For each of the above, select a ROS topic or data within a ROS topic that is connected (e.g. we want to know how far away the closest person is; `\people_tracker_measurements` from `leg_detector`could help).
+3. Write ROS-to-Pd nodes that calculate the relevant information and sends it to Pd. The format of the message is a string that contains: "`variable_name data`". Data as single floats or integers are easiest, but more complex messages are possible to unpack as well. See the `send_<something>.py` files for examples. 
+4. Copy `pd_turtlebot2_share.py` and `comms_turtlebot2_share.pd`, renaming the `turtlebot2_share` parts as desired for your robot and tag. 
+5. In `pd_<your_robot>_<your_tag>.py` (previously `pd_turtlebot2_share.py`), update all mentions of `turtlebot2_share` as in step 4. 
+6. In `comms_<your_robot>_<your_tag>.pd` (now `comms_turtlebot2_share.pd`), change the contents of the `route` object to include all of the variable names established in step 3. 
+7. Create a `controller_<your_robot>_<your_tag>.pd` file with the same number of inlets as variables established in step 3. In `comms_<your_robot>_<your_tag>.pd`, change the `controller_turtlebot2_share` object to `controller_<your_robot>_<your_tag>` and draw a connection between the first outlet of the `route` object to the first inlet of the `controller_<your_robot>_<your_tag>`, the second outlet to the second inlet, and so on. There should be one disconnected outlet (essentially the `else` outlet) on the `route` object at the end. 
+8. In your `controller_<your_robot>_<your_tag>`, try things out! Pure Data is very powerful for creating different generative sounds and the design space is wide open for experimentation. For some comparisons of sound design modalities, I recommend:
+[Robot Gesture Sonification to Enhance Awareness of Robot Status and Enjoyment of Interaction](https://ieeexplore.ieee.org/document/9223452), Zahray et al.
+[Smooth Operator: Tuning Robot Perception Through Artificial Movement Sound](https://dl.acm.org/doi/abs/10.1145/3434073.3444658), Robinson et al. 
+9. Change your launch file to include all of your `send_<something>` nodes and your `pd_<your_robot>_<your_tag>.py` node.
+10. Launch and experiment with your sonification live!
