@@ -17,10 +17,10 @@ if __name__ == '__main__':
     # Allow keyboard exit
     signal.signal(signal.SIGINT, keyboard_interrupt_callback)
 
-	# ROS setup
+    # ROS setup
     rospy.init_node('turtlebot2_share_pd')
 
-	# Continually reopens the comms_turtlebot2_share.pd patch if it closes
+    # Continually reopens the comms_turtlebot2_share.pd patch if it closes
     while not rospy.is_shutdown():
         command = 'puredata -open '
         filepath = os.path.join(os.path.dirname(__file__), 'comms_turtlebot2_share.pd')

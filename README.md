@@ -18,7 +18,7 @@ To use the package as-is, you will need:
 
 Parts 2 and 3 can be simulated. 
 
-You will need to install Pure Data (`sudo apt install puredata`) and the following TurtleBot 2 related packages, which you can install via the commands below:
+You will need to install the following TurtleBot 2 related packages, which you can install via the commands below:
 
 ```
 cd ~/catkin_ws/src # Or your ROS workspace name
@@ -41,11 +41,12 @@ rosdep install --from-paths src --ignore-src -r -y
 catkin_make
 ```
 
-Next, you can install this package:
+Next, you can install this package and Pure Data:
 
 ```
 cd ~/catkin_ws/src
 git clone https://github.com/shareresearchteam/sonify_it.git
+sudo apt install puredata
 ```
 
 Lastly, build and source your ROS workspace:
@@ -68,7 +69,7 @@ To bring up a simulated robot:
 
 ```
 roslaunch turtlebot_stage turtlebot_in_stage.launch
-roslaunch turtlebot2_share.launch
+roslaunch sonify_it turtlebot2_share.launch
 ```
 
 You may want to teleoperate the robot, which you can do with:

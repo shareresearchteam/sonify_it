@@ -1,9 +1,14 @@
-#N canvas 2106 169 960 984 10;
+#N canvas 2880 69 960 1011 10;
 #X obj 20 20 netreceive 9001;
 #X obj 322 201 print;
 #X obj 20 60 route linear_velocity angular_velocity distance status
 ;
 #X obj 20 200 controller_turtlebot2_share;
+#X text 378 50 The 'route' object allows splitting up packets based
+on their name \, which must match the names assigned in the send_<robot>_<data>.py
+files.;
+#X text 19 228 The order of the inlets matters and should be labeled
+in the controller_<robot>_<tag> file accordingly;
 #X connect 0 0 2 0;
 #X connect 2 0 1 0;
 #X connect 2 0 3 0;

@@ -1,9 +1,13 @@
 <launch>
-  <!-- Pd persistent node -->
-  <node pkg="sonify_it" name="main" type="pd_turtlebot2_share.py" cwd="node" output="screen" />
+    <!-- Default connection information, can send to a remote computer (untested) -->
+    <arg name="ip" default="localhost"/>
+    <arg name="port" default="9001"/>
 
-  <!-- ROS-to-Pd nodes -->
-  <node pkg="sonify_it" name="send_speed" type="send_turtlebot2_speed.py" />
-  <node pkg="sonify_it" name="send_distance" type="send_turtlebot2_distance.py" />
-  <node pkg="sonify_it" name="send_status" type="send_turtlebot2_status.py" />
+    <!-- ROS-to-Pd nodes -->
+    <node name="pd_send_velocity" pkg="sonify_it" type="send_turtlebot2_velocity.py" args="$(arg ip) $(arg port)" output="screen"/>
+    <node name="pd_send_distance" pkg="sonify_it" type="send_turtlebot2_distance.py" args="$(arg ip) $(arg port)" output="screen"/>
+    <node name="pd_send_status" pkg="sonify_it" type="send_turtlebot2_status.py" args="$(arg ip) $(arg port)" output="screen"/>
+
+    <!-- Pd persistent node -->
+    <node name="pd_main" pkg="sonify_it" type="pd_turtlebot2_share.py" cwd="node" output="screen"/>
 </launch>
