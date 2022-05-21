@@ -2,9 +2,9 @@
 
 SonifyIt is a sound generation system for robots. By interfacing [Robot Operating System (ROS)](https://wiki.ros.org/) and [Pure Data (Pd)](https://puredata.info/), roboticists and sound designers can collaborate to develop, deploy, and share sound designs for robots. 
 
-SonifyIt acts as a bridge between ROS and Pd such that curated data streams available in ROS can be transferred to Pd. These data streams may then be used directly for sonification or to trigger preset sound files or sound generation patches. Unlike classic methods of producing sounds on robots, Pd allows on-the-go modification of designed sounds, greater variability/less repetitiveness, and a more accessible interface for non-programmers. 
+SonifyIt acts as a bridge between ROS and Pd such that curated data streams available in ROS can be transferred to Pd. These data streams may then be used directly for sonification or to trigger preset sound files or sound generation patches. Unlike classic methods of producing sounds on robots, Pd allows on-the-go modification of designed sounds, greater variability/less repetitiveness, and a more accessible interface for non-programmers. Here is the provided working example of SonifyIt in action:
 
-[//]: # "TODO: include a video example of SonifyIt."
+https://user-images.githubusercontent.com/8885230/169638825-85df6338-d71d-49cc-bc0b-8de52679f526.mp4
 
 For more details on the structure and use of SonifyIt for new robots and associated sound designs, please see [**the wiki**](https://github.com/shareresearchteam/sonify_it/wiki).
 
