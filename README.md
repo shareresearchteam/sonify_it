@@ -1,3 +1,5 @@
+![example workflow](https://github.com/shareresearchteam/sonify_it/actions/workflows/main.yml/badge.svg)
+
 # SonifyIt
 
 SonifyIt is a sound generation system for robots. By interfacing [Robot Operating System (ROS)](https://wiki.ros.org/) and [Pure Data (Pd)](https://puredata.info/), roboticists and sound designers can collaborate to develop, deploy, and share sound designs for robots. 
