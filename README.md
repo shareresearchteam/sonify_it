@@ -14,9 +14,11 @@ If you have any questions, are interested in contributing, or just would like to
 
 ## Usage
 
-This package currently contains an example implementation for the Turtlebot 2 robot. To use the package as-is, you will need:
+This package currently contains an example implementation for the Turtlebot 2 robot running [ROS 1 Noetic](https://wiki.ros.org/noetic/Installation/Ubuntu). It is a Python-based package. A [version based on C++](https://github.com/shareresearchteam/sonify_it/tree/noetic_cpp) and a [version for ROS 2](https://github.com/shareresearchteam/sonify_it2) are planned. 
 
-1. A computer with some flavor of Ubuntu 20.04 and [ROS Noetic](https://wiki.ros.org/noetic/Installation/Ubuntu)
+To use the package as-is, you will need:
+
+1. A computer with some flavor of Ubuntu 20.04 and ROS 1 Noetic
 2. A TurtleBot 2 (optional; you can simulate one instead)
 3. An RPLIDAR A1 (optional; you can simulate an alternative instead)
 
